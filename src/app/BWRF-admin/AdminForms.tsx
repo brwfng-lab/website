@@ -8,10 +8,11 @@ export function AddBookForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    const form = e.currentTarget
     setIsPending(true)
     try {
-      await addBook(new FormData(e.currentTarget))
-      e.currentTarget.reset()
+      await addBook(new FormData(form))
+      form.reset()
       alert("Book added successfully!")
     } catch (err: any) {
       alert("Failed to add book: " + err.message)
@@ -121,10 +122,11 @@ export function AddEventForm({ books }: { books: any[] }) {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    const form = e.currentTarget
     setIsPending(true)
     try {
-      await createEvent(new FormData(e.currentTarget))
-      e.currentTarget.reset()
+      await createEvent(new FormData(form))
+      form.reset()
       setMode('online')
       alert('Event added successfully!')
     } catch (err: any) {
@@ -301,10 +303,11 @@ export function AddMerchForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    const form = e.currentTarget
     setIsPending(true)
     try {
-      await createMerch(new FormData(e.currentTarget))
-      e.currentTarget.reset()
+      await createMerch(new FormData(form))
+      form.reset()
       alert('Merchandise added successfully!')
     } catch (err: any) {
       alert('Failed to add merchandise: ' + err.message)
