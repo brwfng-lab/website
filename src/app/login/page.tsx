@@ -10,6 +10,7 @@ export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [mode, setMode] = useState<'login' | 'signup'>('login');
   
@@ -20,14 +21,22 @@ export default function LoginPage() {
     e.preventDefault();
     setLoading(true);
     setError(null);
+    setSuccess(null);
 
     try {
       if (mode === 'signup') {
-        const { error } = await supabase.auth.signUp({
+        const { data, error } = await supabase.auth.signUp({
           email,
           password,
         });
         if (error) throw error;
+        
+        // If email confirmation is enabled, session will be null
+        if (data.session === null) {
+          setSuccess('Success! Please check your email inbox to confirm your account.');
+          return;
+        }
+
         // The trigger will automatically create a row in the profiles table.
         // We'll redirect to dashboard.
         router.push('/BWRF-member');
@@ -90,6 +99,12 @@ export default function LoginPage() {
             {error && (
               <div className="bg-red-50 text-red-600 p-3 text-sm font-light border border-red-200">
                 {error}
+              </div>
+            )}
+            
+            {success && (
+              <div className="bg-emerald-50 text-emerald-700 p-4 text-sm font-light border border-emerald-200 rounded-sm">
+                {success}
               </div>
             )}
             
