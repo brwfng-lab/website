@@ -6,19 +6,15 @@ import CartSidebar from './CartSidebar';
 import { useCart } from '@/context/CartContext';
 import { ShoppingBag } from 'lucide-react';
 
-export default function SiteLayoutWrapper({ children, clubName, clubTagline }: { children: React.ReactNode, clubName?: string, clubTagline?: string }) {
+export default function SiteLayoutWrapper({ children, clubName, clubTagline, isDashboard = false }: { children: React.ReactNode, clubName?: string, clubTagline?: string, isDashboard?: boolean }) {
   const pathname = usePathname();
   const { items, setIsCartOpen } = useCart();
-  
-  // Handle Next.js middleware rewrites by checking both pathname and hostname
-  const isDashboardSubdomain = typeof window !== 'undefined' && 
-    (window.location.hostname.startsWith('admin.') || window.location.hostname.startsWith('member.'));
-    
+      
   // Routes that shouldn't show the public navbar and footer
   const hideNavAndFooter = pathname.startsWith('/BWRF-member') || 
                            pathname === '/login' || 
                            pathname.startsWith('/BWRF-admin') || 
-                           isDashboardSubdomain;
+                           isDashboard;
 
   if (hideNavAndFooter) {
     return <main className="min-h-screen">{children}</main>;

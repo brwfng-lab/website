@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 };
 
 import { createClient } from '@supabase/supabase-js'
+import { headers } from 'next/headers'
 
 export default async function RootLayout({
   children,
@@ -21,8 +22,13 @@ export default async function RootLayout({
 }>) {
   let clubName = undefined;
   let clubTagline = undefined;
+  let isDashboard = false;
   
   try {
+    const headersList = await headers();
+    const host = headersList.get('host') || '';
+    isDashboard = host.startsWith('admin.') || host.startsWith('member.');
+    
     const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
     const { data } = await supabase.from('club_settings').select('club_name, club_tagline').eq('id', 1).single();
     if (data) {
@@ -37,7 +43,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={`${inter.className} min-h-screen bg-slate-50 text-slate-900 font-light overflow-x-hidden`}>
         <CartProvider>
-          <SiteLayoutWrapper clubName={clubName} clubTagline={clubTagline}>
+          <SiteLayoutWrapper clubName={clubName} clubTagline={clubTagline} isDashboard={isDashboard}>
             {children}
           </SiteLayoutWrapper>
         </CartProvider>
