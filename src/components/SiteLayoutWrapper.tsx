@@ -10,8 +10,15 @@ export default function SiteLayoutWrapper({ children, clubName, clubTagline }: {
   const pathname = usePathname();
   const { items, setIsCartOpen } = useCart();
   
+  // Handle Next.js middleware rewrites by checking both pathname and hostname
+  const isDashboardSubdomain = typeof window !== 'undefined' && 
+    (window.location.hostname.startsWith('admin.') || window.location.hostname.startsWith('member.'));
+    
   // Routes that shouldn't show the public navbar and footer
-  const hideNavAndFooter = pathname.startsWith('/BWRF-member') || pathname === '/login' || pathname.startsWith('/BWRF-admin');
+  const hideNavAndFooter = pathname.startsWith('/BWRF-member') || 
+                           pathname === '/login' || 
+                           pathname.startsWith('/BWRF-admin') || 
+                           isDashboardSubdomain;
 
   if (hideNavAndFooter) {
     return <main className="min-h-screen">{children}</main>;
