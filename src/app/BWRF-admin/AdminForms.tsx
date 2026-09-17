@@ -32,7 +32,7 @@ export function AddBookForm() {
       </div>
       <div>
         <label className="block text-sm font-light text-slate-700 mb-1">Cover Image URL</label>
-        <input name="cover_image_url" type="url" className="w-full px-3 py-2 border border-slate-200 rounded-md font-light text-sm" placeholder="https://..." />
+        <input name="cover_image_url" type="text" className="w-full px-3 py-2 border border-slate-200 rounded-md font-light text-sm" placeholder="https://... or /image.jpg" />
       </div>
       <div>
         <label className="block text-sm font-light text-slate-700 mb-1">Initial Status</label>
@@ -330,7 +330,7 @@ export function AddMerchForm() {
         </div>
         <div>
           <label className="block text-sm font-light text-slate-700 mb-1">Image URL</label>
-          <input required name="image_url" type="url" className="w-full px-3 py-2 border border-slate-200 rounded-md font-light text-sm" placeholder="https://..." />
+          <input required name="image_url" type="text" className="w-full px-3 py-2 border border-slate-200 rounded-md font-light text-sm" placeholder="https://... or /image.jpg" />
         </div>
       </div>
       <button disabled={isPending} type="submit" className="w-full bg-slate-900 text-white px-4 py-2 rounded-md font-light hover:bg-slate-800 transition disabled:opacity-50 mt-4">
