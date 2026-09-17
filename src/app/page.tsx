@@ -54,7 +54,7 @@ export default async function Home() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start items-center">
                 <Link 
-                  href="/login" 
+                  href="https://member.brwf.ng/login" 
                   className="w-full sm:w-auto px-8 py-4 bg-blue-600 text-white font-light tracking-wide rounded-none shadow-lg shadow-blue-600/20 hover:bg-blue-700 hover:-translate-y-0.5 transition-all text-lg text-center"
                 >
                   Join the Club
@@ -335,7 +335,7 @@ export default async function Home() {
             Join a thriving community of readers, dive into deep discussions, and cast your vote on the books that shape our journey.
           </p>
           <Link 
-            href="/login" 
+            href="https://member.brwf.ng/login" 
             className="px-10 py-4 bg-white text-blue-600 font-light tracking-wide rounded-none shadow-lg hover:bg-slate-50 hover:-translate-y-0.5 transition-all text-lg"
           >
             Join the Club Today

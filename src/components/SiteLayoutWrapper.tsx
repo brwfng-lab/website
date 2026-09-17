@@ -61,7 +61,7 @@ export default function SiteLayoutWrapper({ children, clubName, clubTagline, isD
                   </span>
                 )}
               </button>
-              <Link href="/BWRF-member" className="text-sm font-light tracking-wide bg-slate-900 text-white px-5 py-2 rounded-lg shadow-sm hover:bg-slate-800 transition-colors">
+              <Link href="https://member.brwf.ng" className="text-sm font-light tracking-wide bg-slate-900 text-white px-5 py-2 rounded-lg shadow-sm hover:bg-slate-800 transition-colors">
                 Member Portal
               </Link>
             </div>
