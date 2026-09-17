@@ -1,0 +1,85 @@
+{
+  "profiles": [
+    {
+      "id": "6371a6fb-2b53-4a1e-972f-bcc9fdc8f07e",
+      "email": "test@brwf.com",
+      "display_name": "Test Member",
+      "avatar_url": null,
+      "role": "owner",
+      "status": "approved",
+      "created_at": "2026-08-20T05:48:40.069503+00:00",
+      "theme_color": "scifi"
+    }
+  ],
+  "books": [
+    {
+      "id": "11111111-1111-1111-1111-111111111111",
+      "title": "The Great Gatsby",
+      "author": "F. Scott Fitzgerald",
+      "cover_image_url": "https://m.media-amazon.com/images/I/71FTb9X6wsL._AC_UF1000,1000_QL80_.jpg",
+      "status": "past",
+      "created_at": "2026-08-19T12:15:21.829009+00:00"
+    },
+    {
+      "id": "33333333-3333-3333-3333-333333333333",
+      "title": "Dune",
+      "author": "Frank Herbert",
+      "cover_image_url": "https://m.media-amazon.com/images/I/A1u+2ZYG3uL._AC_UF1000,1000_QL80_.jpg",
+      "status": "nominated",
+      "created_at": "2026-08-19T12:15:21.829009+00:00"
+    },
+    {
+      "id": "22222222-2222-2222-2222-222222222222",
+      "title": "Jewish Secrets of Wealth Creation",
+      "author": "Dr. David Ogbueli",
+      "cover_image_url": "/81LcDLXilnL._UF1000,1000_QL80_.jpg",
+      "status": "current",
+      "created_at": "2026-08-19T12:15:21.829009+00:00"
+    },
+    {
+      "id": "721bc125-1da1-4a24-bdb6-689ea2504d5f",
+      "title": "Believe Bigger",
+      "author": "Marshawn Evans Daniels",
+      "cover_image_url": "/believe-bigger.jpg",
+      "status": "past",
+      "created_at": "2026-09-02T15:31:53.5641+00:00"
+    },
+    {
+      "id": "bf901ff9-e821-4a7b-900c-236dd7aa785f",
+      "title": "King Solomon Wisdom & Wealth",
+      "author": "David Ogbueli",
+      "cover_image_url": "/king-solomon-wisdom-wealth.jpg",
+      "status": "past",
+      "created_at": "2026-09-02T15:31:53.5641+00:00"
+    },
+    {
+      "id": "97055963-3f58-4b73-b999-4bbd6987cdf2",
+      "title": "The Field of Boaz",
+      "author": "Rev. Austin J. Ukporhe",
+      "cover_image_url": "/The-Field-of-Boaz-Rev.-Austin-J.-Ukporhe.png",
+      "status": "past",
+      "created_at": "2026-09-02T15:31:53.5641+00:00"
+    },
+    {
+      "id": "153bf294-5045-49f0-8bd9-c72830e3b435",
+      "title": "Making It Big",
+      "author": "Femi Otedola",
+      "cover_image_url": "/Making-it-big.jpg",
+      "status": "past",
+      "created_at": "2026-09-02T15:31:53.5641+00:00"
+    }
+  ],
+  "events": [
+    {
+      "id": "44444444-4444-4444-4444-444444444444",
+      "title": "1984 Discussion Meeting",
+      "description": "Join us for a discussion of 1984 by George Orwell.",
+      "date_time": "2026-08-26T12:15:21.829009+00:00",
+      "book_id": "22222222-2222-2222-2222-222222222222",
+      "created_at": "2026-08-19T12:15:21.829009+00:00",
+      "meeting_mode": "online",
+      "location": "Online Video Call"
+    }
+  ],
+  "merchandise": []
+}
