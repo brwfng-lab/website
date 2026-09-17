@@ -114,7 +114,7 @@ export default async function Home() {
               </div>
               <div className="mt-8">
                 <p className="font-medium text-slate-900 signature font-serif text-xl italic">— Shola Odeyinde</p>
-                <p className="text-sm text-slate-500 font-light">Founder, Book Reviews With Friends</p>
+                <p className="text-sm text-slate-500 font-light">Founder, Book Review With Friends</p>
               </div>
             </div>
 

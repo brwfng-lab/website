@@ -2,7 +2,7 @@ import { createClient } from '@/utils/supabase/server';
 import MerchGrid from '@/components/MerchGrid';
 
 export const metadata = {
-  title: 'Merchandise - Book Reviews With Friends',
+  title: 'Merchandise - Book Review With Friends',
   description: 'Official community merchandise.',
 };
 

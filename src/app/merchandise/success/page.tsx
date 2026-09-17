@@ -28,7 +28,7 @@ function SuccessContent() {
 
       <h1 className="text-3xl font-thin tracking-tight text-slate-900 mb-4">Payment Successful!</h1>
       <p className="text-slate-500 font-light mb-8">
-        Thank you for supporting Book Reviews With Friends. Your order has been received and is being processed.
+        Thank you for supporting Book Review With Friends. Your order has been received and is being processed.
       </p>
 
       {reference && (
