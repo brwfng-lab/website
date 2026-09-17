@@ -16,12 +16,12 @@ export async function proxy(request: NextRequest) {
 
   // Only rewrite if it's the root path (so we don't break /login or API routes)
   if (url.pathname === '/') {
-    if (hostname.includes('admin.bwrf.com')) {
+    if (hostname.startsWith('admin.')) {
       url.pathname = '/BWRF-admin';
       return NextResponse.rewrite(url, {
         headers: response.headers,
       });
-    } else if (hostname.includes('member.bwrf.com')) {
+    } else if (hostname.startsWith('member.')) {
       url.pathname = '/BWRF-member';
       return NextResponse.rewrite(url, {
         headers: response.headers,
