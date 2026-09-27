@@ -46,6 +46,12 @@ export default async function DashboardPage() {
     .eq('status', 'past')
     .order('created_at', { ascending: false });
 
+  // Fetch nominated books for voting section
+  const { data: nominatedBooks } = await supabase
+    .from('books')
+    .select('*')
+    .eq('status', 'nominated');
+
   return (
     <DashboardClient 
       profile={profile} 
@@ -53,6 +59,7 @@ export default async function DashboardPage() {
       currentBook={currentBook} 
       nextEvent={nextEvent}
       pastBooks={pastBooks || []}
+      nominatedBooks={nominatedBooks || []}
     />
   );
 }
