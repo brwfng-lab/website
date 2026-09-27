@@ -52,6 +52,21 @@ export default async function DashboardPage() {
     .select('*')
     .eq('status', 'nominated');
 
+  // Fetch votes for the voting section
+  const { data: votesData } = await supabase
+    .from('votes')
+    .select('book_id, user_id');
+
+  const voteCounts: Record<string, number> = {};
+  const userVotes: string[] = [];
+
+  votesData?.forEach((v) => {
+    voteCounts[v.book_id] = (voteCounts[v.book_id] || 0) + 1;
+    if (v.user_id === user.id) {
+      userVotes.push(v.book_id);
+    }
+  });
+
   return (
     <DashboardClient 
       profile={profile} 
@@ -60,6 +75,8 @@ export default async function DashboardPage() {
       nextEvent={nextEvent}
       pastBooks={pastBooks || []}
       nominatedBooks={nominatedBooks || []}
+      voteCounts={voteCounts}
+      userVotes={userVotes}
     />
   );
 }

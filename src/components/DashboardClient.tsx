@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import VoteButton from './VoteButton';
 import { 
   LayoutDashboard, User, Settings, LogOut, 
   BookOpen, Calendar, MessageSquare, Palette, Bell,
@@ -22,7 +23,9 @@ export default function DashboardClient({
   currentBook,
   nextEvent,
   pastBooks = [],
-  nominatedBooks = []
+  nominatedBooks = [],
+  voteCounts = {},
+  userVotes = []
 }: { 
   profile: any; 
   email: string;
@@ -30,6 +33,8 @@ export default function DashboardClient({
   nextEvent?: any;
   pastBooks?: any[];
   nominatedBooks?: any[];
+  voteCounts?: Record<string, number>;
+  userVotes?: string[];
 }) {
   const [activeTab, setActiveTab] = useState('overview');
   const [activeGroup, setActiveGroup] = useState<string | null>(null);
@@ -872,25 +877,35 @@ export default function DashboardClient({
                       <CheckSquare className={`w-8 h-8 ${currentTheme.text}`} />
                       Voting Booth
                     </h1>
-                    <p className="text-slate-500 font-light">Help us choose next month's selection.</p>
+                    <p className="text-slate-500 font-light">Help us choose next month's selection. Review the nominations and cast your vote.</p>
                   </div>
-                  <Link href="/vote" className={`px-6 py-2 rounded-lg text-sm font-light text-white shadow-sm ${currentTheme.bg} hover:opacity-90 transition-opacity`}>
-                    Cast Your Vote
-                  </Link>
                 </div>
-                <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col md:flex-row">
-                  <div className={`w-full md:w-1/3 p-8 flex flex-col justify-center items-center text-center ${currentTheme.light}`}>
-                    <div className="text-5xl font-thin text-slate-900 mb-2">{nominatedBooks.length}</div>
-                    <div className="text-xs uppercase tracking-widest text-slate-500 font-light">Nominated</div>
-                  </div>
-                  <div className="p-8 flex-1 flex flex-col justify-center">
-                    <h3 className="text-xl font-light text-slate-900 mb-2">Next Selection is Open</h3>
-                    <p className="text-slate-500 font-light mb-6">There {nominatedBooks.length === 1 ? 'is' : 'are'} currently {nominatedBooks.length} nominated {nominatedBooks.length === 1 ? 'book' : 'books'} waiting for your approval. Your vote decides what we read next!</p>
-                    <div>
-                      <Link href="/vote" className="inline-block text-sm font-light uppercase tracking-widest text-slate-500 hover:text-slate-900 border-b border-transparent hover:border-slate-900 pb-1 transition-all">Enter Voting Booth &rarr;</Link>
+
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                  {nominatedBooks?.map((book) => (
+                    <div key={book.id} className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col hover:border-slate-300 transition-colors">
+                      <img 
+                        src={book.cover_image_url || '/placeholder-book.jpg'} 
+                        alt={book.title}
+                        className="w-full h-64 object-cover rounded-md mb-4 shadow-sm"
+                      />
+                      <h2 className="text-xl font-light text-slate-900 mb-1">{book.title}</h2>
+                      <p className="text-slate-500 font-light mb-6 flex-1 text-sm">by {book.author}</p>
+                      
+                      <VoteButton 
+                        bookId={book.id}
+                        hasVoted={userVotes.includes(book.id)}
+                        initialCount={voteCounts[book.id] || 0}
+                      />
                     </div>
-                  </div>
+                  ))}
                 </div>
+                
+                {(!nominatedBooks || nominatedBooks.length === 0) && (
+                  <div className="text-center text-slate-400 py-12 font-light">
+                    No books currently nominated for voting. Check back later!
+                  </div>
+                )}
               </div>
             )}
 
