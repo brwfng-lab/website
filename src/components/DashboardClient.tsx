@@ -20,12 +20,14 @@ export default function DashboardClient({
   profile, 
   email,
   currentBook,
-  nextEvent
+  nextEvent,
+  pastBooks = []
 }: { 
   profile: any; 
   email: string;
   currentBook?: any;
   nextEvent?: any;
+  pastBooks?: any[];
 }) {
   const [activeTab, setActiveTab] = useState('overview');
   const [activeGroup, setActiveGroup] = useState<string | null>(null);
@@ -454,25 +456,27 @@ export default function DashboardClient({
                 </div>
 
                 <div className="space-y-4">
-                  {[
-                    { title: "The Great Gatsby", author: "F. Scott Fitzgerald", date: "July 2026", cover: "https://m.media-amazon.com/images/I/71FTb9X6wsL._AC_UF1000,1000_QL80_.jpg" },
-                    { title: "Dune", author: "Frank Herbert", date: "June 2026", cover: "https://m.media-amazon.com/images/I/A1u+2ZYG3uL._AC_UF1000,1000_QL80_.jpg" },
-                    { title: "1984", author: "George Orwell", date: "May 2026", cover: "https://m.media-amazon.com/images/I/61NAx5pd6XL._AC_UF1000,1000_QL80_.jpg" },
-                  ].map((book, i) => (
-                    <div key={i} className="bg-white rounded-xl border border-slate-200 shadow-sm p-4 flex gap-6 items-center hover:border-slate-300 transition-colors">
-                      <img src={book.cover} alt={book.title} className="w-16 h-24 object-cover rounded shadow-sm" />
-                      <div className="flex-1">
-                        <h3 className="text-lg font-light text-slate-900">{book.title}</h3>
-                        <p className="text-sm font-light text-slate-500 mb-2">by {book.author}</p>
-                        <span className={`inline-block px-2 py-1 rounded text-xs font-light ${currentTheme.light} ${currentTheme.text}`}>
-                          Finished {book.date}
-                        </span>
+                  {pastBooks && pastBooks.length > 0 ? (
+                    pastBooks.map((book: any) => (
+                      <div key={book.id} className="bg-white rounded-xl border border-slate-200 shadow-sm p-4 flex gap-6 items-center hover:border-slate-300 transition-colors">
+                        <img src={book.cover_image_url || '/placeholder-book.jpg'} alt={book.title} className="w-16 h-24 object-cover rounded shadow-sm" />
+                        <div className="flex-1">
+                          <h3 className="text-lg font-light text-slate-900">{book.title}</h3>
+                          <p className="text-sm font-light text-slate-500 mb-2">by {book.author}</p>
+                          <span className={`inline-block px-2 py-1 rounded text-xs font-light ${currentTheme.light} ${currentTheme.text}`}>
+                            Finished {new Date(book.created_at).toLocaleDateString(undefined, { month: 'long', year: 'numeric' })}
+                          </span>
+                        </div>
+                        <button className="px-4 py-2 text-sm font-light text-slate-500 hover:text-slate-900 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors">
+                          View Details
+                        </button>
                       </div>
-                      <button className="px-4 py-2 text-sm font-light text-slate-500 hover:text-slate-900 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors">
-                        View Details
-                      </button>
+                    ))
+                  ) : (
+                    <div className="text-center py-12 bg-white rounded-xl border border-slate-200 shadow-sm">
+                      <p className="text-slate-500 font-light">You haven't finished any books with the club yet!</p>
                     </div>
-                  ))}
+                  )}
                 </div>
               </div>
             )}

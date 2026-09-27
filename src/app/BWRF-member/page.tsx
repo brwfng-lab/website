@@ -39,12 +39,20 @@ export default async function DashboardPage() {
     .limit(1);
   const nextEvent = events?.[0] || null;
 
+  // Fetch past books for reading history
+  const { data: pastBooks } = await supabase
+    .from('books')
+    .select('*')
+    .eq('status', 'past')
+    .order('created_at', { ascending: false });
+
   return (
     <DashboardClient 
       profile={profile} 
       email={user.email || ''} 
       currentBook={currentBook} 
-      nextEvent={nextEvent} 
+      nextEvent={nextEvent}
+      pastBooks={pastBooks || []}
     />
   );
 }
