@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { BookOpen } from 'lucide-react';
 
 export default function LoginPage() {
+  const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -28,6 +29,11 @@ export default function LoginPage() {
         const { data, error } = await supabase.auth.signUp({
           email,
           password,
+          options: {
+            data: {
+              full_name: fullName
+            }
+          }
         });
         if (error) throw error;
         
@@ -105,6 +111,24 @@ export default function LoginPage() {
             {success && (
               <div className="bg-emerald-50 text-emerald-700 p-4 text-sm font-light border border-emerald-200 rounded-sm">
                 {success}
+              </div>
+            )}
+            
+            {mode === 'signup' && (
+              <div>
+                <label className="block text-sm font-medium text-slate-700">
+                  Full Name
+                </label>
+                <div className="mt-1">
+                  <input
+                    type="text"
+                    required
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                    className="appearance-none block w-full px-4 py-3 border border-slate-300 bg-slate-50 text-slate-900 font-light focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition-colors rounded-none"
+                    placeholder="e.g. John Doe"
+                  />
+                </div>
               </div>
             )}
             
